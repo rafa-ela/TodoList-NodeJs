@@ -70,7 +70,7 @@ app.get('/task_display',function(req,res) {
 });
 
 app.delete('/id_task',function(req,res) {
-    var idNumber = req.body.id_task;
+    var idNumber = req.body.id;
     var query = client.query("delete from todo where id = '" + idNumber + "' ");
 
     query.on('end',function(){
