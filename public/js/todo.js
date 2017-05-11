@@ -179,12 +179,12 @@ $(document).ready(function (e) {
             },
             "Confirm": function () { //removes it from the list
                 var taskDel = $(this).data('task');
-                var sibling = $(taskDel).siblings('.task').attr('id');
+                var id_task = $(taskDel).siblings('.task').attr('id');
                 $.ajax({
                     method: 'DELETE',
-                    url: 'http://localhost:8080/task_delete',
+                    url: 'http://localhost:8080/tasks/id_task',
                     data: JSON.stringify({
-                        id: sibling
+                        id: id_task
                     }),
                     contentType: "application/json",
                     success:function () {

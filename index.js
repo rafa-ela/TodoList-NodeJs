@@ -69,8 +69,8 @@ app.get('/task_display',function(req,res) {
     })
 });
 
-app.delete('/task_delete',function(req,res) {
-    var idNumber = req.body.id;
+app.delete('/tasks/id_task',function(req,res) {
+    var idNumber = req.body.id_task;
     var query = client.query("delete from todo where id = '" + idNumber + "' ");
 
     query.on('end',function(){
