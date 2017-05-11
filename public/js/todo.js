@@ -25,7 +25,7 @@ $(document).ready(function (e) {
                 }
                 $.ajax({
                     method: 'POST',
-                    url: 'http://localhost:8080/task_add',
+                    url: 'https://floating-garden-64913.herokuapp.com/task_add',
                     data: JSON.stringify({
                         task: taskName
                     }),
@@ -78,7 +78,7 @@ $(document).ready(function (e) {
         var change = true;
         $.ajax({
             method: 'PUT',
-            url: 'http://localhost:8080/task_done',
+            url: 'https://floating-garden-64913.herokuapp.com/task_done',
             data: JSON.stringify({
                 done: change, id:sibling
             }),
@@ -140,7 +140,7 @@ $(document).ready(function (e) {
                     var sibling = toBeDeleted.find('.task').attr('id');
                     $.ajax({
                         method: 'PUT',
-                        url: 'http://localhost:8080/task_edit',
+                        url: 'https://floating-garden-64913.herokuapp.com/task_edit',
                         data: JSON.stringify({
                             id: sibling, task:editedTask
                         }),
@@ -182,7 +182,7 @@ $(document).ready(function (e) {
                 var id_task = $(taskDel).siblings('.task').attr('id');
                 $.ajax({
                     method: 'DELETE',
-                    url: 'http://localhost:8080/tasks/id_task',
+                    url: 'https://floating-garden-64913.herokuapp.com/id_task',
                     data: JSON.stringify({
                         id: id_task
                     }),
@@ -204,7 +204,7 @@ $(document).ready(function (e) {
 function loadAllTasks(){
     $.ajax({
         method: 'GET',
-        url: 'http://localhost:8080/task_display',
+        url: 'https://floating-garden-64913.herokuapp.com/task_display',
         dataType: "json",
         success: function (data) {
             for(var i = 0; i< data.length; i++){
@@ -239,7 +239,7 @@ function updateTodo(){
         var id = jQuery('span.task', todoList[i]).attr('id');
     $.ajax({
         method: 'PUT',
-        url:'http://localhost:8080/task_updateTodoList',
+        url:'https://floating-garden-64913.herokuapp.com/task_updateTodoList',
         contentType: 'application/json',
         data: JSON.stringify({
             id_todo: id, boolVal:false
@@ -256,7 +256,7 @@ function updateCompleted(){
         var id = jQuery('span.task', completedList[i]).attr('id');
         $.ajax({
             method: 'PUT',
-            url:'http://localhost:8080/task_updateCompleteList',
+            url:'https://floating-garden-64913.herokuapp.com/task_updateCompleteList',
             contentType: 'application/json',
             data: JSON.stringify({
                 id_todo: id, boolVal:true

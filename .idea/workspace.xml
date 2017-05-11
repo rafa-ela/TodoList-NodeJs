@@ -19,21 +19,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+            <state relative-caret-position="765">
+              <caret line="45" column="86" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todo.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/todo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1037">
-              <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state relative-caret-position="459">
+              <caret line="258" column="61" lean-forward="false" selection-start-line="258" selection-start-column="61" selection-end-line="258" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -50,8 +50,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="/am/courtenay/home1/tabayrafa/Desktop/2017/NWEN304/PROJECT 2/index.js" />
-        <option value="$PROJECT_DIR$/public/js/todo.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/public/js/todo.js" />
       </list>
     </option>
   </component>
@@ -265,12 +265,12 @@
       <workItem from="1494396981769" duration="4427000" />
       <workItem from="1494456601069" duration="895000" />
       <workItem from="1494476083857" duration="735000" />
-      <workItem from="1494478619436" duration="3025000" />
+      <workItem from="1494478619436" duration="3585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80638000" />
+    <option name="totallyTimeSpent" value="81198000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -282,16 +282,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="613" y="35" width="1295" height="1010" extended-state="4" />
+    <frame x="613" y="35" width="1295" height="1010" extended-state="5" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15905511" sideWeight="0.45272207" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32542372" sideWeight="0.475039" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2677966" sideWeight="0.24724409" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.49141964" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2677966" sideWeight="0.7527559" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2677966" sideWeight="0.7527559" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22937854" sideWeight="0.6393701" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22937854" sideWeight="0.6393701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.396861" sideWeight="0.4833691" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -537,18 +537,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/todo.js">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1037">
-          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="765">
+          <caret line="45" column="86" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/public/js/todo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+        <state relative-caret-position="459">
+          <caret line="258" column="61" lean-forward="false" selection-start-line="258" selection-start-column="61" selection-end-line="258" selection-end-column="61" />
           <folding />
         </state>
       </provider>
