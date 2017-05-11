@@ -1,7 +1,7 @@
 var express = require('express');
 var pg = require('pg');
 var bodyParser = require('body-parser');
-var connectionString = "postgres://tabayrafa:300350087@depot:5432/tabayrafa_jdbc";
+var connectionString = process.env.DATABASE_URL|| "postgres://tabayrafa:300350087@depot:5432/tabayrafa_jdbc";
 
 var client = new pg.Client(connectionString);
 client.connect();
