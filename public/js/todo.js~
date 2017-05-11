@@ -1,0 +1,242 @@
+$(document).ready(function (e) {
+
+    loadAllTasks();
+
+
+    $('#add-todo').button({
+        icons: {
+            primary: "ui-icon-circle-plus"
+        }
+    }).click(
+        function () {
+            $('#new-todo').dialog('open');
+        });
+
+    $('#new-todo').dialog({
+        modal: true,
+        autoOpen: false,
+        buttons: {
+
+            "Add task": function () {
+
+                var taskName = $('#task').val();
+                if (taskName === '') {
+                    return false;
+                }
+                $.ajax({
+                    method: 'POST',
+                    url: 'http://localhost:8080/task_add',
+                    data: JSON.stringify({
+                        task: taskName
+                    }),
+                    contentType: "application/json",
+                    success: function (id) {
+                        var taskHTML;
+                        taskHTML = '<li><span class="done">%</span>';
+                        taskHTML += '<span class="edit">+</span>';
+                        taskHTML += '<span class="delete">x</span>';
+                        taskHTML += '<span class="task">' + taskName + '</span></li>';
+                        taskHTML += '';
+                        var $newTask = $(taskHTML); //$() function turns it into a DOM element
+                        $newTask.find('.task').text(taskName); //find class and and add the content of taskName to span class 'task'
+                        $newTask.hide();
+                        $('#task').val('');
+                        $('#todo-list').prepend($newTask); //add new task to todo-list
+                        $newTask.show('clip', 250).effect('highlight', 1000);
+                        $('#new-todo').dialog('close');
+                    }
+                })
+              // setInterval(function(){cache_clear()},500);
+
+            },
+
+            "Cancel": function () {
+                $(this).dialog('close');
+            }
+
+        },
+        /*Clears the input text when the "x" button is pressed*/
+        close: function () {
+            $(':text', this).val('');
+        }
+
+    });
+
+
+
+    /*Moves the todo task to the completed list*/
+    $('#todo-list').on('click', '.done', function () {
+        var doneTask = $(this).parent('li'); //stores the element the user clicked on
+        var doneTaskName= doneTask.find('.task').text();
+        var taskHTML;
+        taskHTML = '<li><span class="done">%</span>';
+        taskHTML += '<li><span class="edit">+</span>';
+        taskHTML += '<span class="delete">x</span>';
+        taskHTML += '<span class="task">' + doneTaskName + '</span></li>';
+        var $renamedTask = $(taskHTML);
+        var sibling = doneTask.find('.task').attr('id'); //finds the id of the clicked task
+        var change = true;
+        $.ajax({
+            method: 'PUT',
+            url: 'http://localhost:8080/task_done',
+            data: JSON.stringify({
+                done: change, id:sibling
+            }),
+            contentType: "application/json",
+            success: function () {
+                doneTask.slideUp(250, function () {
+                    doneTask.detach();
+                    $('#completed-list').prepend($(doneTask));
+                    doneTask.slideDown();
+
+                })
+            }
+        })
+
+        setInterval(function(){cache_clear()},500);
+
+    });
+
+    /*Allows drag and drops */
+    $('.sortlist').sortable({
+        connectWith: '.sortlist',
+        cursor: 'pointer',
+        placeholder: 'ui-state-highlight',
+        cancel: '.delete,.done'
+    });
+
+    /*When the edit button is clicked, it gets
+     and stores the task you want to delete and
+     opens the edit-option dialog
+     */
+    var toBeDeleted;
+    $('#todo-list').on('click', '.edit', function () { //allows any element with ID "to-do list" to be modified
+        toBeDeleted = $(this).parent('li'); //saves the element you want to modify
+        $('#edit-option').data({'task':this}).dialog('open');
+    });
+
+    $('#edit-option').dialog({
+            autoOpen: false,
+            modal: true,
+            buttons: {
+                "Cancel": function () {
+                    $(this).dialog('close');
+                },
+                "Confirm": function () {
+
+                    var editedTask = $('#editTask').val();
+                    if (editedTask === '') {
+                        return false;
+                    }
+                    var taskHTML;
+                    taskHTML = '<li><span class="done">%</span>';
+                    taskHTML += '<span class="edit">+</span>';
+                    taskHTML += '<span class="delete">x</span>';
+                    taskHTML += '<span class="task">' + editedTask + '</span></li>';
+                    var $renamedTask = $(taskHTML);
+                    var sibling = toBeDeleted.find('.task').attr('id');
+                    $.ajax({
+                        method: 'PUT',
+                        url: 'http://localhost:8080/task_edit',
+                        data: JSON.stringify({
+                            id: sibling, task:editedTask
+                        }),
+                        contentType: "application/json",
+                        success:function () {
+                            $renamedTask.hide();
+                            toBeDeleted.remove(); //remove the old task
+                            $('#todo-list').prepend($renamedTask); //add a new task
+                            $renamedTask.show('clip', 250).effect('highlight', 1000);
+                            $('#edit-option').dialog('close');
+                        }
+                    });
+                    setInterval(function(){cache_clear()},500);
+
+                }
+        }, /*Clears the text input */
+        close: function () {
+            $(':text', this).val('');
+        }
+    });
+
+    /*When the delete button is clicked, it gets
+     and stores the task you want to delete and
+     opens a dialog
+     */
+
+    $('.sortlist').on('click', '.delete', function () {
+      $('#delete-option').data({'task':this}).dialog('open');
+
+    });
+    /*Deletes a task from each list*/
+    $('#delete-option').dialog({ //opens delete option dialog
+        autoOpen: false,
+        modal: true,
+        buttons: {
+            "Cancel": function () {
+                $(this).dialog('close');
+            },
+
+            "Confirm": function () { //removes it from the list
+                var taskDel = $(this).data('task');
+                var sibling = $(taskDel).siblings('.task').attr('id');
+                $.ajax({
+                    method: 'DELETE',
+                    url: 'http://localhost:8080/task_delete',
+                    data: JSON.stringify({
+                        id: sibling
+                    }),
+                    contentType: "application/json",
+                    success:function () {
+                        $(taskDel).parent('li').effect('puff', function () {
+                            $(taskDel).remove();
+                        });
+                        $('#delete-option').dialog('close');
+                    }
+                })
+
+                setInterval(function(){cache_clear()},500);
+
+            }
+        }
+    });
+
+}); // end ready
+
+function loadAllTasks(){
+    console.log("load all tasks");
+    $.ajax({
+        method: 'GET',
+        url: 'http://localhost:8080/task_display',
+        dataType: "json",
+        success: function (data) {
+            for(var i = 0; i< data.length; i++){
+                var obj = data[i].done; //each object in the json file array
+                var taskHTML;
+                taskHTML = '<li><span class="done">%</span>';
+                taskHTML += '<span class="edit">+</span>';
+                taskHTML += '<span class="delete">x</span>';
+                taskHTML += '<span class="task", id ="'+data[i].id+'">' + data[i].task + '</span></li>';
+                taskHTML += '';
+
+                if(obj == false){
+                    $('#todo-list').prepend(taskHTML);
+
+                }
+                else{
+                    $('#completed-list').prepend(taskHTML);
+
+                }
+
+            }
+        }
+
+
+    })
+}
+
+function cache_clear()
+{
+    window.location.reload(true);
+    // window.location.reload(); use this if you do not remove cache
+}
