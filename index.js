@@ -49,8 +49,8 @@ app.post('/task_add',function(req,res) {
         getID(res);
     });
     query.on('error',function(err){
-        console.log(err);
-       // res.sendStatus(400);
+       console.log(err);
+        res.sendStatus(err.statusCode);
     });
 
 
@@ -68,6 +68,8 @@ app.get('/task_display',function(req,res) {
     });
     query.on('error',function(err){
         console.log(err);
+        res.sendStatus(err.statusCode);
+
     })
 });
 
@@ -77,6 +79,8 @@ app.delete('/delete_task',function(req,res) {
 
     query.on('error',function(err){
         console.log(err);
+        res.sendStatus(err.statusCode);
+
     });
     query.on('end',function(){
         res.sendStatus(200);
@@ -93,6 +97,8 @@ app.put('/task_edit',function(req,res) {
 
     query.on('error',function(err){
         console.log(err);
+        res.sendStatus(err.statusCode);
+
     });
 
     query.on('end',function(){
@@ -111,6 +117,7 @@ app.put('/task_done',function(req,res) {
 
     query.on('error',function(err){
         console.log(err);
+        res.sendStatus(err.statusCode);
     });
 
     query.on('end',function(){
@@ -133,7 +140,8 @@ app.put('/task_updateTodoList',function(req,res) {
     });
     query.on('error',function(err){
         console.log(err);
-    })
+        res.sendStatus(err.statusCode);
+    });
 });
 
 app.put('/task_updateCompleteList',function(req,res) {
@@ -145,7 +153,8 @@ app.put('/task_updateCompleteList',function(req,res) {
     });
     query.on('error',function(err){
         console.log(err);
-    })
+        res.sendStatus(err.statusCode);
+    });
 });
 
 
