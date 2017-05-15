@@ -132,10 +132,11 @@ $(document).ready(function (e) {
                         return false;
                     }
                     var taskHTML;
+                    var sibling = toBeDeleted.find('.task').attr('id');
                     taskHTML = '<li><span class="done">%</span>';
                     taskHTML += '<span class="edit">+</span>';
                     taskHTML += '<span class="delete">x</span>';
-                    taskHTML += '<span class="task">' + editedTask + '</span></li>';
+                    taskHTML += '<span class="task", id ="'+sibling+'">' + editedTask + '</span></li>';
                     var $renamedTask = $(taskHTML);
                     var sibling = toBeDeleted.find('.task').attr('id');
                     $.ajax({
