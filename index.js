@@ -106,13 +106,13 @@ app.put('/task_done',function(req,res) {
     var booleanDone= req.body.done;
     var idNumber = req.body.id;
     var query = client.query("update todo set done = '"+booleanDone+ "' where id = '" + idNumber + "'");
-
-    query.on('error',function(err){
-        console.log(err);
-    });
     query.on('end',function(){
         res.sendStatus(200);
     });
+    query.on('error',function(err){
+        console.log(err);
+    });
+
 
 });
 
