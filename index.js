@@ -77,7 +77,7 @@ app.delete('/delete_task',function(req,res) {
 
 
     query.on('error',function(err){
-        res.sendStatus(400);
+        console.log(err);
     });
     query.on('end',function(){
         res.sendStatus(200);
@@ -91,12 +91,14 @@ app.put('/task_edit',function(req,res) {
     var taskName= req.body.task;
     var query = client.query("update todo set task = '"+taskName+ "' where id = '" + idNumber + "'");
 
+    query.on('error',function(err){
+        console.log(err);
+    });
+
     query.on('end',function(){
         res.sendStatus(200);
     });
-    query.on('error',function(err){
-        console.log(err);
-    })
+
 });
 
 app.put('/task_done',function(req,res) {
@@ -105,12 +107,13 @@ app.put('/task_done',function(req,res) {
     var idNumber = req.body.id;
     var query = client.query("update todo set done = '"+booleanDone+ "' where id = '" + idNumber + "'");
 
+    query.on('error',function(err){
+        console.log(err);
+    });
     query.on('end',function(){
         res.sendStatus(200);
     });
-    query.on('error',function(err){
-        console.log(err);
-    })
+
 });
 
 
