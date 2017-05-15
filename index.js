@@ -45,13 +45,15 @@ app.post('/task_add',function(req,res) {
     var taskname = req.body.task;
     var query_string = "insert into todo (task,done) values ('" + taskname + "',false)";
     var query = client.query(query_string);
-    query.on('end', function(){
-        getID(res);
-    });
+
     query.on('error',function(err){
-       console.log(err);
+        console.log(err);
         console.log("status code : " + err.statusCode);
         res.sendStatus(err.statusCode);
+    });
+
+    query.on('end', function(){
+        getID(res);
     });
 
 
