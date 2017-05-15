@@ -75,12 +75,14 @@ app.delete('/delete_task',function(req,res) {
     var idNumber = req.body.id;
     var query = client.query("delete from todo where id = '" + idNumber + "' ");
 
+
+    query.on('error',function(err){
+        res.sendStatus(400);
+    });
     query.on('end',function(){
         res.sendStatus(200);
     });
-    query.on('error',function(err){
-        console.log(err);
-    })
+
 });
 
 
