@@ -46,13 +46,14 @@ app.post('/task_add',function(req,res) {
     var query_string = "insert into todo (task,done) values ('" + taskname + "',false)";
     var query = client.query(query_string);
 
-    query.on('end', function(){
-        getID(res);
-    });
     query.on('error',function(err){
         //console.log(err);
         res.sendStatus(400);
-    })
+    });
+    query.on('end', function(){
+        getID(res);
+    });
+
 });
 
 app.get('/task_display',function(req,res) {
