@@ -182,7 +182,7 @@ $(document).ready(function (e) {
                 var id_task = $(taskDel).siblings('.task').attr('id');
                 $.ajax({
                     method: 'DELETE',
-                    url: 'https://floating-garden-64913.herokuapp.com/id_task',
+                    url: 'https://floating-garden-64913.herokuapp.com/delete_task',
                     data: JSON.stringify({
                         id: id_task
                     }),
