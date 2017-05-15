@@ -76,13 +76,13 @@ app.delete('/delete_task',function(req,res) {
     var query = client.query("delete from todo where id = '" + idNumber + "' ");
 
 
-    query.on('error',function(err){
-        console.log(err);
-    });
     query.on('end',function(){
         res.sendStatus(200);
     });
 
+    query.on('error',function(err){
+        console.log(err);
+    });
 });
 
 
@@ -91,13 +91,15 @@ app.put('/task_edit',function(req,res) {
     var taskName= req.body.task;
     var query = client.query("update todo set task = '"+taskName+ "' where id = '" + idNumber + "'");
 
-    query.on('error',function(err){
-        console.log(err);
-    });
+
 
     query.on('end',function(){
         res.sendStatus(200);
     });
+    query.on('error',function(err){
+        console.log(err);
+    });
+
 
 });
 
