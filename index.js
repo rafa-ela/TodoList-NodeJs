@@ -47,8 +47,8 @@ app.post('/task_add',function(req,res) {
     var query = client.query(query_string);
 
     query.on('error',function(err){
-        //console.log(err);
-        res.sendStatus(400);
+        console.log(err);
+       // res.sendStatus(400);
     });
     query.on('end', function(){
         getID(res);
