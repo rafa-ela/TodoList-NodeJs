@@ -123,9 +123,11 @@ app.put('/task_done',function(req,res) {
 app.put('/task_updateTodoList',function(req,res) {
     //SQL Query > Select Data
     var id= req.body.id_todo;
-    var boolean = req.body.boolVal;
-    var query = client.query("update todo set done = '"+boolean+ "' where id = '" + id + "'");
+    var query = client.query("update todo set done = 'false' where id = '" + id + "'");
 
+    query.on('end',function(){
+        res.sendStatus(200);
+    });
     query.on('error',function(err){
         console.log(err);
     })
@@ -134,9 +136,10 @@ app.put('/task_updateTodoList',function(req,res) {
 app.put('/task_updateCompleteList',function(req,res) {
     //SQL Query > Select Data
     var id= req.body.id_todo;
-    var boolean = req.body.boolVal;
-    var query = client.query("update todo set done = '"+boolean+ "' where id = '" + id + "'");
-
+    var query = client.query("update todo set done = 'true' where id = '" + id + "'");
+    query.on('end',function(){
+        res.sendStatus(200);
+    });
     query.on('error',function(err){
         console.log(err);
     })

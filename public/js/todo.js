@@ -243,7 +243,7 @@ function updateTodo(){
         url:'https://floating-garden-64913.herokuapp.com/task_updateTodoList',
         contentType: 'application/json',
         data: JSON.stringify({
-            id_todo: id, boolVal:false
+            id_todo: id
         })
     })
     }
@@ -260,7 +260,7 @@ function updateCompleted(){
             url:'https://floating-garden-64913.herokuapp.com/task_updateCompleteList',
             contentType: 'application/json',
             data: JSON.stringify({
-                id_todo: id, boolVal:true
+                id_todo: id
             })
         })
     }
