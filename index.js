@@ -28,28 +28,24 @@ app.get('/test_database',function(req,res) {
     query.on('row', function(row){
         results.push(row);
     });
-
     query.on('end',function(){
         res.json(results);
-
     });
-
     //useful for debugging
     query.on('error',function(err){
         console.log(err);
     })
 });
 
-app.post('/task_add',function(req,res) {
+app.post('/task_add/:taskName',function(req,res) {
     //This querying to our databse,
-    var taskname = req.body.task;
-    var query_string = "insert into todo (task,done) values ('" + taskname + "',false)";
+    var task = req.params.taskName;
+    var query_string = "insert into todo (task,done) values ('" + task + "',false)";
     var query = client.query(query_string);
 
     query.on('end', function(){
         getID(res);
     });
-
     query.on('error',function(err){
         console.log(err);
         res.sendStatus(err.statusCode);
@@ -90,7 +86,6 @@ app.delete('/delete_task',function(req,res) {
 
 });
 
-
 app.put('/task_edit',function(req,res) {
     var idNumber = req.body.id;
     var taskName= req.body.task;
@@ -128,8 +123,6 @@ app.put('/task_done',function(req,res) {
 
 
 });
-
-
 
 app.put('/task_updateTodoList',function(req,res) {
     //SQL Query > Select Data

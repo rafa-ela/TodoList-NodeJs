@@ -25,10 +25,10 @@ $(document).ready(function (e) {
                 }
                 $.ajax({
                     method: 'POST',
-                    url: 'https://floating-garden-64913.herokuapp.com/task_add',
-                    data: JSON.stringify({
+                    url: 'https://floating-garden-64913.herokuapp.com/task_add/' +taskName,
+                   /* data: JSON.stringify({
                         task: taskName
-                    }),
+                    }),*/
                     contentType: "application/json",
                     dataType: "json",
                     success: function (row) {
