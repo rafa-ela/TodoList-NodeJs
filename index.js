@@ -71,9 +71,9 @@ app.put('/task_done/:boolean/:id',function(req,res) {
 
 });
 
-app.put('/task_edit',function(req,res) {
-    var idNumber = req.body.id;
-    var taskName= req.body.task;
+app.put('/task_edit/:editedTask/:id',function(req,res) {
+    var idNumber = req.params.id;
+    var taskName= req.params.editedTask;
     var query = client.query("update todo set task = '"+taskName+ "' where id = '" + idNumber + "'");
 
     query.on('error',function(err){
@@ -84,6 +84,22 @@ app.put('/task_edit',function(req,res) {
     query.on('end',function(){
         res.sendStatus(200);
     });
+});
+
+app.delete('/delete_task/:id',function(req,res) {
+    var idNumber = req.params.id;
+    var query = client.query("delete from todo where id = '" + idNumber + "' ");
+
+    query.on('error',function(err){
+        console.log(err);
+        res.sendStatus(err.statusCode);
+
+    });
+    query.on('end',function(){
+        res.sendStatus(200);
+    });
+
+
 });
 
 
@@ -104,25 +120,10 @@ app.get('/task_display',function(req,res) {
     })
 });
 
-app.delete('/delete_task',function(req,res) {
-    var idNumber = req.body.id;
-    var query = client.query("delete from todo where id = '" + idNumber + "' ");
 
-    query.on('error',function(err){
-        console.log(err);
-        res.sendStatus(err.statusCode);
-
-    });
-    query.on('end',function(){
-        res.sendStatus(200);
-    });
-
-
-});
-
-app.put('/task_updateTodoList',function(req,res) {
+app.put('/task_updateTodoList/:id_todo',function(req,res) {
     //SQL Query > Select Data
-    var id= req.body.id_todo;
+    var id= req.params.id_todo;
     var query = client.query("update todo set done = 'false' where id = '" + id + "'");
 
     query.on('end',function(){
@@ -134,9 +135,9 @@ app.put('/task_updateTodoList',function(req,res) {
     });
 });
 
-app.put('/task_updateCompleteList',function(req,res) {
+app.put('/task_updateCompleteList/id_todo',function(req,res) {
     //SQL Query > Select Data
-    var id= req.body.id_todo;
+    var id= req.params.id_todo;
     var query = client.query("update todo set done = 'true' where id = '" + id + "'");
     query.on('end',function(){
         res.sendStatus(200);
