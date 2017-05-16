@@ -78,10 +78,10 @@ $(document).ready(function (e) {
         var change = true;
         $.ajax({
             method: 'PUT',
-            url: 'https://floating-garden-64913.herokuapp.com/task_done',
-            data: JSON.stringify({
+            url: 'https://floating-garden-64913.herokuapp.com/task_done/' + change + '/' + sibling,
+            /*data: JSON.stringify({
                 done: change, id:sibling
-            }),
+            }),*/
             contentType: "application/json",
             success: function () {
                 doneTask.slideUp(250, function () {

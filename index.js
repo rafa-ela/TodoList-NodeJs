@@ -53,6 +53,40 @@ app.post('/task_add/:taskName',function(req,res) {
 
 });
 
+
+app.put('/task_done/:boolean/:id',function(req,res) {
+    //SQL Query > Select Data
+    var booleanDone= req.params.boolean;
+    var idNumber = req.params.id;
+    var query = client.query("update todo set done = '"+booleanDone+ "' where id = '" + idNumber + "'");
+
+    query.on('error',function(err){
+        console.log(err);
+        res.sendStatus(err.statusCode);
+    });
+
+    query.on('end',function(){
+        res.sendStatus(200);
+    });
+
+});
+
+app.put('/task_edit',function(req,res) {
+    var idNumber = req.body.id;
+    var taskName= req.body.task;
+    var query = client.query("update todo set task = '"+taskName+ "' where id = '" + idNumber + "'");
+
+    query.on('error',function(err){
+        console.log(err);
+        res.sendStatus(err.statusCode);
+
+    });
+    query.on('end',function(){
+        res.sendStatus(200);
+    });
+});
+
+
 app.get('/task_display',function(req,res) {
     var query = client.query("Select * from todo");
     var results= [];
@@ -82,44 +116,6 @@ app.delete('/delete_task',function(req,res) {
     query.on('end',function(){
         res.sendStatus(200);
     });
-
-
-});
-
-app.put('/task_edit',function(req,res) {
-    var idNumber = req.body.id;
-    var taskName= req.body.task;
-    var query = client.query("update todo set task = '"+taskName+ "' where id = '" + idNumber + "'");
-
-    query.on('error',function(err){
-        console.log(err);
-        res.sendStatus(err.statusCode);
-
-    });
-
-    query.on('end',function(){
-        res.sendStatus(200);
-    });
-
-
-
-});
-
-app.put('/task_done',function(req,res) {
-    //SQL Query > Select Data
-    var booleanDone= req.body.done;
-    var idNumber = req.body.id;
-    var query = client.query("update todo set done = '"+booleanDone+ "' where id = '" + idNumber + "'");
-
-    query.on('error',function(err){
-        console.log(err);
-        res.sendStatus(err.statusCode);
-    });
-
-    query.on('end',function(){
-        res.sendStatus(200);
-    });
-
 
 
 });
