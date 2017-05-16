@@ -79,7 +79,6 @@ app.put('/task_edit/:editedTask/:id',function(req,res) {
     query.on('error',function(err){
         console.log(err);
         res.sendStatus(err.statusCode);
-
     });
     query.on('end',function(){
         res.sendStatus(200);
@@ -98,7 +97,6 @@ app.delete('/delete_task/:id',function(req,res) {
     query.on('end',function(){
         res.sendStatus(200);
     });
-
 
 });
 
