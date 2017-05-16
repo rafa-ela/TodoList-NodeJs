@@ -135,7 +135,7 @@ app.put('/task_updateTodoList/:id_todo',function(req,res) {
     });
 });
 
-app.put('/task_updateCompleteList/id_todo',function(req,res) {
+app.put('/task_updateCompleteList/:id_todo',function(req,res) {
     //SQL Query > Select Data
     var id= req.params.id_todo;
     var query = client.query("update todo set done = 'true' where id = '" + id + "'");
@@ -147,7 +147,6 @@ app.put('/task_updateCompleteList/id_todo',function(req,res) {
         res.sendStatus(err.statusCode);
     });
 });
-
 
 function getID(res){
 
